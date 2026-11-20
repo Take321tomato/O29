@@ -49,7 +49,13 @@ function Copy-TreeMasked([string]$name) {
   Get-ChildItem -Path $src -Recurse -File | ForEach-Object {
     if ($_.Name -match '(?i)^(auth\.json|.*\.(pem|key|p12|pfx)|\.env.*)$') { return }
     $rel = $_.FullName.Substring($Source.Length).TrimStart('\')
-    Copy-Masked $_.FullName (Join-Path $Dest $rel)
+    $to = Join-Path $Dest $rel
+    if ($_.Extension -match '(?i)^\.(md|txt|json|jsonl|toml|ya?ml|py|js|ts|sh|ps1|rules|csv)$') {
+      Copy-Masked $_.FullName $to
+    } else {
+      New-Item -ItemType Directory -Path (Split-Path $to -Parent) -Force | Out-Null
+      Copy-Item $_.FullName $to   # binary files (images etc.) copied as-is
+    }
   }
   Write-Host "copied: $name"
 }
