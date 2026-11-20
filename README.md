@@ -4,7 +4,7 @@
 
 ## スマホから使う手順
 
-1. **GitHub 連携**: claude.ai の設定 → Connectors で GitHub を接続し、Claude GitHub App をこのリポジトリにインストール（済）。
+1. **GitHub 連携**: claude.ai の設定 → Connectors で GitHub を接続し、Claude GitHub App をこのリポジトリにインストールする。
 2. **セッション開始**: スマホの Claude アプリ（または ブラウザで claude.ai/code）→「Code」→ リポジトリ `take321tomato/o29` を選んで指示を送る。
 3. **作業の流れ**: Claude がクラウド上のコンテナでコードを編集 → `claude/...` ブランチにコミット & push → 必要なら PR を作成。
 4. **確認**: GitHub アプリ / ブラウザでブランチや PR を確認し、問題なければ main にマージ。
